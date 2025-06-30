@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function enableCopyToClipboard() {
+        debugger
+        //this is the button that will be clicked
+        const el = document.querySelector('button')
+
+        //this is the function that will be called when the button is clicked
+        el.addEventListener('click', () => {
+          const targetId = el.getAttribute('data-copy-target')
+          const input = document.getElementById(targetId)
+          if (input) {
+            navigator.clipboard.writeText(input.value)
+            el.textContent = 'Done'
+            el.style.color = 'gray'
+            setTimeout(() => {
+              el.textContent = 'Copy'
+              el.style.color = '#3957EA'
+            }, 2000)
+          }
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <button data-copy-target="my-input">Copy</button>
+    <input id="my-input" value="Hello, world!" />
+    <script type="text/javascript">
+      enableCopyToClipboard()
+    </script>
+  </body>
+</html>
